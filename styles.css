@@ -169,3 +169,25 @@ main { width: min(720px, calc(100% - 48px)); margin: 0 auto; background: #0b0b0e
   .site-header { height: 88px; }
   .site-header .brand { font-size: 30px; }
 }
+
+/* Monochrome finish: black, graphite, gray and white only. */
+:root {
+  --paper: #f2f2f2;
+  --muted: #999995;
+  --line: rgba(242, 242, 242, 0.16);
+  --acid: #f2f2f2;
+  --orange: #4b4b4b;
+  --lilac: #a7a7a7;
+  --blue: #767676;
+}
+body { background: #e8e8e8; }
+.site-header, main, .site-footer { background: #0b0b0b; }
+.brand-card-featured { background: #f0f0f0; color: #111111; }
+.brand-card-orange { background: #555555; color: #f2f2f2; }
+.brand-card-dark { background: #292929; color: #f2f2f2; }
+.brand-card-lilac { background: #a8a8a8; color: #111111; }
+.brand-card-lime { background: #dedede; color: #111111; }
+.brand-card-blue { background: #777777; color: #f2f2f2; }
+.product-cloud { background: #e1e1e1; color: #111111; }
+.product-server { background: #292929; color: #f2f2f2; }
+.brand-dot, .footer-meta a, .text-link span { color: #f2f2f2; }
