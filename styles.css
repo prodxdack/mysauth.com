@@ -121,3 +121,51 @@ h1 em, h2 em, h3 em { color: var(--acid); font-style: normal; }
   .products { display: block; padding: 100px 0 120px; }.products-intro { margin-bottom: 55px; }.product-list { grid-template-columns: 1fr; }.product-card { min-height: 500px; }.closing { min-height: 500px; padding: 110px 0 125px; }.closing-mark { font-size: 190px; top: 40px; }.site-footer { grid-template-columns: 1fr; gap: 22px; }.site-footer p { text-align: left; }.footer-meta { justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 }
 @media (max-width: 480px) { .hero-actions { align-items: flex-start; flex-direction: column; gap: 23px; }.brand-grid { display: block; }.brand-card { min-height: 360px !important; margin-bottom: 12px; }.brand-card h3 { font-size: 52px; }.product-card { min-height: 490px; }.closing-mark { right: -15px; font-size: 150px; } }
+
+/* Compact card hub: the landing intentionally keeps only the visual directory. */
+body { background: #e8e6e1; padding: 28px 0; }
+.site-noise { display: none; }
+.site-header { width: min(720px, calc(100% - 48px)); height: 104px; padding: 0 22px; background: #0b0b0e; border-radius: 30px 30px 0 0; }
+.site-header .brand { margin: 0 auto; font: 700 34px/1 var(--display); letter-spacing: -.07em; }
+.site-header .brand-mark, .site-header .site-nav, .site-header .menu-toggle { display: none; }
+main { width: min(720px, calc(100% - 48px)); margin: 0 auto; background: #0b0b0e; border-radius: 0 0 30px 30px; }
+.hero, .statement, .closing { display: none; }
+.brands { width: auto; margin: 0; padding: 0 20px 24px; border: 0; }
+.section-heading { display: block; margin: 0 0 17px; }
+.section-heading .eyebrow, .products-intro .eyebrow { margin: 0; color: var(--paper); font: 700 20px/1 var(--display); letter-spacing: -.04em; text-transform: none; }
+.section-heading .eyebrow span, .products-intro .eyebrow span, .section-heading h2 { display: none; }
+.heading-note, .card-number, .card-kicker, .card-copy, .card-label { display: none; }
+.brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.brand-card, .brand-card:nth-child(n) { grid-column: span 1; min-height: 92px; padding: 17px; border-radius: 14px; align-items: center; justify-content: center; text-align: center; }
+.brand-card-featured { grid-column: 1 / -1 !important; min-height: 76px !important; padding: 17px 55px 17px 76px !important; align-items: flex-start; justify-content: center; text-align: left; }
+.brand-card::before { content: "◌"; display: grid; place-items: center; width: 27px; height: 27px; margin-bottom: 10px; border: 1px solid currentColor; border-radius: 9px; font: 15px/1 var(--display); }
+.brand-card-featured::before { position: absolute; left: 17px; top: 50%; margin: 0; transform: translateY(-50%); background: rgba(17, 18, 15, .08); }
+.brand-card h3, .brand-card:nth-child(n) h3 { margin: 0; font-size: 15px; line-height: 1; letter-spacing: -.04em; }
+.brand-card-featured h3 { font-size: 20px; }
+.brand-card h3 em { color: inherit; }
+.card-arrow { top: 17px; right: 17px; font-size: 13px; }
+.brand-card:hover { transform: translateY(-3px); }
+.products { display: block; width: auto; margin: 0; padding: 0 20px 25px; border: 0; }
+.products-intro { margin: 0 0 17px; }
+.products-intro > p:last-child, .product-top, .product-card p, .product-card .button { display: none; }
+.product-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.product-card { min-height: 116px; padding: 17px; border-radius: 14px; align-items: center; justify-content: center; text-align: center; }
+.product-symbol { width: 31px; height: 31px; margin: 0 0 10px; }
+.cloud-symbol span { border-color: currentColor; }
+.server-symbol { gap: 3px; }
+.server-symbol span { height: 8px; border-color: currentColor; }
+.server-symbol span::after { width: 3px; height: 3px; top: 2px; left: 3px; }
+.product-card h3 { margin: 0; font-size: 14px; line-height: 1; letter-spacing: -.04em; }
+.product-card h3 em { color: inherit; }
+.site-footer { width: min(720px, calc(100% - 48px)); display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 15px 20px 23px; background: #0b0b0e; border: 0; border-radius: 0 0 30px 30px; color: #777870; }
+.footer-brand { color: var(--paper); font-size: 10px; }
+.footer-brand .brand-mark { display: none; }
+.site-footer p, .footer-meta span:not(:first-child), .footer-meta a { display: none; }
+.footer-meta { margin-left: auto; font-size: 10px; }
+
+@media (max-width: 560px) {
+  body { padding: 0; }
+  .site-header, main, .site-footer { width: 100%; border-radius: 0; }
+  .site-header { height: 88px; }
+  .site-header .brand { font-size: 30px; }
+}
