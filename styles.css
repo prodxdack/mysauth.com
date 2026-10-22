@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --black: #0b0b0b; --panel: #101010; --card: #151515; --card-alt: #191919; --paper: #f1f1ef; --muted: #8e8e8a; --soft: #b7b7b2; --line: rgba(241, 241, 239, .18); --line-soft: rgba(241, 241, 239, .1); --display: "Space Grotesk", sans-serif; --body: "Inter", sans-serif; --mono: "DM Mono", monospace;
 }
 * { box-sizing: border-box; }
@@ -226,13 +226,13 @@ a { color: inherit; text-decoration: none; } button { font: inherit; }
 }
 .product-card:last-child:nth-child(odd) {
   grid-column: 1 / -1;
-  width: calc(50% - 5px);
+  width: 100%;
   justify-self: center;
 }
 
 @media (max-width: 560px) {
   .product-card:last-child:nth-child(odd) {
-    width: calc(50% - 4px);
+    width: 100%;
   }
 }
 
@@ -279,3 +279,194 @@ body::after { content: ""; position: fixed; inset: -28% -14%; z-index: -1; point
 
 /* Preserve the card arrow overlay above the texture layer. */
 .brand-card .card-arrow { position: absolute; z-index: 2; }
+
+/* --- Experimental motion system --- */
+.brand-card {
+  --card-delay: 0s;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  will-change: transform;
+}
+.brand-card.reveal {
+  transition:
+    opacity .62s ease var(--card-delay),
+    transform .62s cubic-bezier(.2,.7,.2,1) var(--card-delay),
+    background-color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+#marca-demoonz { --card-delay: .06s; }
+#marca-beats { --card-delay: .14s; }
+#marca-eventos { --card-delay: .22s; }
+#marca-estudios { --card-delay: .30s; }
+#marca-media { --card-delay: .38s; }
+#marca-tickets { --card-delay: .46s; }
+
+.site-header { animation: intro-logo .72s cubic-bezier(.2,.7,.2,1) both; }
+.section-heading { animation: intro-subtitle .7s .12s cubic-bezier(.2,.7,.2,1) both; }
+#marca-hidden-room { transition-delay: .18s; }
+
+@keyframes intro-logo {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes intro-subtitle {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.brand-card::before {
+  will-change: transform, opacity;
+}
+.brand-card:hover::before { filter: brightness(1.14); }
+
+@keyframes fluid-energy {
+  0% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) rotate(-8deg) scale(1.31); opacity: .42; }
+  48% { transform: translate3d(calc(var(--parallax-x) + 7px),calc(var(--parallax-y) - 4px),0) rotate(-4deg) scale(1.39); opacity: .58; }
+  100% { transform: translate3d(calc(var(--parallax-x) - 5px),calc(var(--parallax-y) + 5px),0) rotate(-10deg) scale(1.34); opacity: .46; }
+}
+@keyframes sonic-waves {
+  0%,100% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) rotate(-10deg) scale(1.16); opacity: .38; }
+  50% { transform: translate3d(calc(var(--parallax-x) - 8px),calc(var(--parallax-y) + 3px),0) rotate(-6deg) scale(1.29); opacity: .60; }
+}
+@keyframes light-trails {
+  0% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) rotate(-2deg) scale(1.05); opacity: .32; }
+  50% { transform: translate3d(calc(var(--parallax-x) + 8px),calc(var(--parallax-y) - 6px),0) rotate(3deg) scale(1.12); opacity: .56; }
+  100% { transform: translate3d(calc(var(--parallax-x) - 6px),calc(var(--parallax-y) + 4px),0) rotate(-4deg) scale(1.08); opacity: .38; }
+}
+@keyframes spatial-geometry {
+  0% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) perspective(420px) rotateY(-3deg) scale(1.07); opacity: .34; }
+  50% { transform: translate3d(calc(var(--parallax-x) + 5px),calc(var(--parallax-y) - 3px),0) perspective(420px) rotateY(4deg) scale(1.12); opacity: .50; }
+  100% { transform: translate3d(calc(var(--parallax-x) - 4px),calc(var(--parallax-y) + 4px),0) perspective(420px) rotateY(-5deg) scale(1.09); opacity: .38; }
+}
+@keyframes optical-distortion {
+  0% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) rotate(-8deg) scale(1.19); opacity: .34; }
+  42% { transform: translate3d(calc(var(--parallax-x) - 6px),calc(var(--parallax-y) + 5px),0) rotate(-5deg) scale(1.28); opacity: .55; }
+  100% { transform: translate3d(calc(var(--parallax-x) + 8px),calc(var(--parallax-y) - 4px),0) rotate(-11deg) scale(1.22); opacity: .40; }
+}
+@keyframes kinetic-patterns {
+  0% { transform: translate3d(var(--parallax-x),var(--parallax-y),0) rotate(-10deg) scale(1.15); opacity: .34; }
+  50% { transform: translate3d(calc(var(--parallax-x) + 6px),calc(var(--parallax-y) + 5px),0) rotate(-6deg) scale(1.24); opacity: .54; }
+  100% { transform: translate3d(calc(var(--parallax-x) - 7px),calc(var(--parallax-y) - 3px),0) rotate(-13deg) scale(1.18); opacity: .38; }
+}
+
+#marca-demoonz::before { animation: fluid-energy 15s ease-in-out -3s infinite alternate; }
+#marca-beats::before { animation: sonic-waves 12.5s ease-in-out -7s infinite alternate; }
+#marca-eventos::before { animation: light-trails 17s ease-in-out -10s infinite alternate; }
+#marca-estudios::before { animation: spatial-geometry 14s ease-in-out -4s infinite alternate; }
+#marca-media::before { animation: optical-distortion 18s ease-in-out -12s infinite alternate; }
+#marca-tickets::before { animation: kinetic-patterns 13.5s ease-in-out -6s infinite alternate; }
+
+/* A single soft segment travels around each card instead of lighting the whole border. */
+.brand-card .card-label {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  pointer-events: none;
+}
+.brand-card .card-label::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 300deg,
+    rgba(255,255,255,.62) 318deg,
+    rgba(255,255,255,.08) 337deg,
+    transparent 350deg 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.28));
+  opacity: .48;
+  animation: border-orbit 10s linear infinite;
+}
+@keyframes border-orbit { to { transform: rotate(1turn); } }
+#marca-demoonz .card-label::before { animation-duration: 11.5s; animation-delay: -4.4s; }
+#marca-beats .card-label::before { animation-duration: 9.2s; animation-delay: -1.8s; }
+#marca-eventos .card-label::before { animation-duration: 13.6s; animation-delay: -8s; }
+#marca-estudios .card-label::before { animation-duration: 10.4s; animation-delay: -5.6s; }
+#marca-media .card-label::before { animation-duration: 15.2s; animation-delay: -11s; }
+#marca-tickets .card-label::before { animation-duration: 8.8s; animation-delay: -3.2s; }
+.brand-card:hover .card-label::before { opacity: .78; }
+
+html.js-motion .brand-card::before,
+html.js-motion .brand-card .card-label::before {
+  animation-play-state: paused;
+}
+html.js-motion .brand-card.is-in-view::before,
+html.js-motion .brand-card.is-in-view .card-label::before {
+  animation-play-state: running;
+}
+html.page-hidden .brand-card::before,
+html.page-hidden .brand-card .card-label::before,
+html.page-hidden body::after {
+  animation-play-state: paused;
+}
+
+@media (max-width: 850px) {
+  .brand-card::before { will-change: transform, opacity; }
+  .brand-card .card-label::before { opacity: .4; }
+}
+@media (max-width: 560px) {
+  .brand-card .card-label::before { opacity: .34; }
+  #marca-demoonz::before { animation-duration: 19s; }
+  #marca-beats::before { animation-duration: 16s; }
+  #marca-eventos::before { animation-duration: 21s; }
+  #marca-estudios::before { animation-duration: 18s; }
+  #marca-media::before { animation-duration: 23s; }
+  #marca-tickets::before { animation-duration: 17s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  .brand-card::before,
+  .brand-card .card-label::before {
+    animation: none !important;
+  }
+}
+
+/* --- Products: same universe, larger scale --- */
+.products { padding-top: 42px; padding-bottom: 104px; }
+.products-intro { position: relative; z-index: 1; margin-bottom: 24px; }
+.products-intro .eyebrow { letter-spacing: .24em; }
+.product-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; position: relative; z-index: 1; }
+.product-card {
+  position: relative; overflow: hidden; isolation: isolate; min-height: 360px; padding: 22px 22px 24px;
+  border-color: rgba(255,255,255,.2); border-radius: 9px; background: #111;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035),0 12px 26px rgba(0,0,0,.18);
+  transition: transform .3s ease,border-color .3s ease,box-shadow .3s ease,background-color .3s ease;
+}
+.product-card::before, .product-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.product-card::before { z-index: -2; opacity: .62; background-position: center; background-size: cover; mix-blend-mode: screen; will-change: transform,opacity; }
+.product-card::after { z-index: -1; opacity: .86; background: radial-gradient(circle at 74% 15%,rgba(255,255,255,.08),transparent 34%),linear-gradient(90deg,rgba(7,7,7,.98) 0%,rgba(7,7,7,.76) 52%,rgba(7,7,7,.35) 100%); }
+.product-card > * { position: relative; z-index: 1; }
+.product-card:hover { background-color: #171717; border-color: rgba(255,255,255,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.11),0 16px 34px rgba(0,0,0,.32); transform: translateY(-2px); }
+.product-card:hover::before { opacity: .92; filter: brightness(1.14); }
+.product-cloud::before { background-image: repeating-radial-gradient(ellipse at 82% 82%,transparent 0 18px,rgba(255,255,255,.13) 19px 20px,transparent 21px 31px),radial-gradient(ellipse at 83% 84%,rgba(255,255,255,.2),transparent 39%),linear-gradient(142deg,transparent 39%,rgba(255,255,255,.16) 39.5%,transparent 40%); transform: scale(1.12) rotate(-9deg); animation: product-cloud-orbits 18s ease-in-out -7s infinite alternate; }
+.product-server::before { background-image: linear-gradient(90deg,transparent 18%,rgba(255,255,255,.12) 18.4%,transparent 19%),linear-gradient(90deg,transparent 42%,rgba(255,255,255,.16) 42.4%,transparent 43%),linear-gradient(90deg,transparent 68%,rgba(255,255,255,.1) 68.4%,transparent 69%),linear-gradient(136deg,transparent 45%,rgba(255,255,255,.18) 45.4%,transparent 46%),repeating-linear-gradient(0deg,transparent 0 25px,rgba(255,255,255,.08) 26px 27px,transparent 28px 49px); transform: perspective(620px) rotateY(-5deg) scale(1.16); animation: product-server-circuits 15s ease-in-out -4s infinite alternate; }
+.product-card:last-child:nth-child(odd) { grid-column: 1 / -1; width: 100%; justify-self: stretch; min-height: 230px; } .product-pent4::before { background-image: repeating-linear-gradient(0deg,transparent 0 17px,rgba(255,255,255,.13) 18px 19px,transparent 20px 34px),linear-gradient(90deg,transparent 19%,rgba(255,255,255,.12) 19.5%,transparent 20%),linear-gradient(118deg,transparent 46%,rgba(255,255,255,.22) 46.5%,transparent 47%),radial-gradient(ellipse at 72% 50%,rgba(255,255,255,.16),transparent 36%); transform: rotate(-5deg) scale(1.18); animation: product-pent4-wave 13s ease-in-out -5s infinite alternate; }
+@keyframes product-cloud-orbits { from { transform: translate3d(-6px,3px,0) scale(1.08) rotate(-12deg); opacity: .42; } to { transform: translate3d(8px,-5px,0) scale(1.21) rotate(-5deg); opacity: .68; } }
+@keyframes product-server-circuits { from { transform: perspective(620px) translate3d(-4px,4px,0) rotateY(-7deg) scale(1.12); opacity: .4; } to { transform: perspective(620px) translate3d(7px,-4px,0) rotateY(5deg) scale(1.2); opacity: .62; } }
+@keyframes product-pent4-wave { from { transform: translate3d(-6px,2px,0) rotate(-8deg) scale(1.14); opacity: .4; } to { transform: translate3d(8px,-5px,0) rotate(-2deg) scale(1.23); opacity: .66; } }
+.product-card p { position: relative; min-height: 0; margin-bottom: 0; }
+.product-card .product-symbol { margin: 24px 0 18px; }
+.product-card h3 { margin-bottom: 0; }
+.product-card .button { margin-top: 22px; }
+.product-server .product-symbol, .product-pent4 .product-symbol { margin-bottom: 18px; }
+.product-card p::before { content: ""; position: absolute; inset: -1px; z-index: 2; border-radius: inherit; padding: 1px; background: conic-gradient(from 0deg,transparent 0deg 300deg,rgba(255,255,255,.58) 318deg,rgba(255,255,255,.08) 337deg,transparent 350deg 360deg); -webkit-mask: linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; filter: drop-shadow(0 0 4px rgba(255,255,255,.26)); opacity: .44; pointer-events: none; animation: product-border-orbit 12s linear infinite; }
+.product-server p::before { animation-duration: 10.4s; animation-delay: -3.5s; }
+.product-pent4 p::before { animation-duration: 14.2s; animation-delay: -8s; }
+@keyframes product-border-orbit { to { transform: rotate(1turn); } }
+html.js-motion .product-card::before, html.js-motion .product-card p::before { animation-play-state: paused; }
+html.js-motion .product-card.is-in-view::before, html.js-motion .product-card.is-in-view p::before { animation-play-state: running; }
+html.page-hidden .product-card::before, html.page-hidden .product-card p::before { animation-play-state: paused; }
+@media (max-width: 850px) { .products { padding-top: 34px; padding-bottom: 86px; } .product-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; } .product-card { min-height: 320px; padding: 19px 15px 20px; } .product-card .product-symbol { margin-top: 24px; } .product-card h3 { font-size: clamp(23px,4vw,36px); } }
+@media (max-width: 560px) { .products { padding-top: 28px; padding-bottom: 64px; } .product-list { grid-template-columns: 1fr; gap: 8px; } .product-card { min-height: 276px; padding: 14px 12px 16px; } .product-card:last-child:nth-child(odd) { grid-column: auto; width: 100%; justify-self: stretch; min-height: 240px; } .product-card .product-symbol { margin: 22px auto 13px; } .product-card h3 { font-size: clamp(19px,5.4vw,27px); } .product-card .button { margin-top: 16px; } .product-card p::before { opacity: .32; } }
+@media (prefers-reduced-motion: reduce) { .product-card::before, .product-card p::before { animation: none !important; } }
