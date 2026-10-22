@@ -24,5 +24,16 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
+const canTrackPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+if (canTrackPointer) {
+  document.querySelectorAll('.brand-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const bounds = card.getBoundingClientRect();
+      card.style.setProperty('--pointer-x', (((event.clientX - bounds.left) / bounds.width) * 100) + '%');
+      card.style.setProperty('--pointer-y', (((event.clientY - bounds.top) / bounds.height) * 100) + '%');
+    }, { passive: true });
+  });
+}
+
 const year = document.querySelector('#current-year');
 if (year) year.textContent = new Date().getFullYear();

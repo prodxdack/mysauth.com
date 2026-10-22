@@ -235,3 +235,47 @@ a { color: inherit; text-decoration: none; } button { font: inherit; }
     width: calc(50% - 4px);
   }
 }
+
+/* --- Dark experimental editorial layer --- */
+:root { --black: #080808; --panel: rgba(12,12,12,.86); --card: rgba(17,17,17,.92); --card-alt: rgba(24,24,24,.96); --line: rgba(241,241,239,.24); --line-soft: rgba(241,241,239,.12); --paper: #f4f4f1; --muted: #8b8b88; --soft: #c8c8c2; }
+body { position: relative; isolation: isolate; background: radial-gradient(circle at 50% 10%, rgba(255,255,255,.035), transparent 30rem), #080808; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .34; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px); background-size: 154px 154px,154px 154px,38px 38px,38px 38px; mask-image: linear-gradient(to bottom,#000,transparent 88%); }
+body::after { content: ""; position: fixed; inset: -28% -14%; z-index: -1; pointer-events: none; opacity: .48; background: radial-gradient(ellipse 70% 30% at 19% 45%,transparent 66%,rgba(255,255,255,.11) 66.2%,transparent 66.5%), radial-gradient(ellipse 60% 24% at 85% 66%,transparent 66%,rgba(255,255,255,.08) 66.2%,transparent 66.5%), radial-gradient(circle at 11% 21%,rgba(255,255,255,.22) 0 1px,transparent 1.5px), radial-gradient(circle at 79% 11%,rgba(255,255,255,.16) 0 1px,transparent 1.5px), radial-gradient(circle at 92% 76%,rgba(255,255,255,.2) 0 1px,transparent 1.5px); animation: orbital-drift 34s ease-in-out infinite alternate; }
+@keyframes orbital-drift { from { transform: translate3d(-1%,-1%,0) rotate(-.4deg); } to { transform: translate3d(1%,1%,0) rotate(.4deg); } }
+.site-header { position: relative; }
+.site-header::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(255,255,255,.18) 18%,transparent 44%,rgba(255,255,255,.14) 78%,transparent); opacity: .58; }
+.brand-logo, .footer-logo { filter: grayscale(1) contrast(1.12) brightness(1.12); }
+.brands { position: relative; padding-top: 34px; }
+.brands::before, .brands::after { content: ""; position: absolute; pointer-events: none; }
+.brands::before { top: -30px; right: -16vw; width: 54vw; height: 22vw; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; transform: rotate(-18deg); opacity: .5; }
+.brands::after { top: 42px; left: -12vw; width: 12px; height: 12px; border: 1px solid rgba(255,255,255,.45); box-shadow: 0 0 0 4px rgba(255,255,255,.03),20px 0 0 -5px rgba(255,255,255,.28); transform: rotate(45deg); opacity: .7; }
+.section-heading, .brand-hub, .products, .site-footer { position: relative; z-index: 1; }
+.section-heading .eyebrow { color: #a1a19c; letter-spacing: .24em; }
+.brand-hub { overflow: hidden; padding: 28px 30px 30px; background: radial-gradient(circle at 50% 0%,rgba(255,255,255,.035),transparent 38%),linear-gradient(145deg,rgba(255,255,255,.022),transparent 30%),rgba(10,10,10,.86); border-color: rgba(255,255,255,.28); border-radius: 13px; box-shadow: 0 28px 70px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08); }
+.brand-hub::before, .brand-hub::after { content: ""; position: absolute; pointer-events: none; }
+.brand-hub::before { top: 0; left: 0; width: 230px; height: 1px; background: linear-gradient(90deg,rgba(255,255,255,.7),transparent); box-shadow: 0 0 18px rgba(255,255,255,.16); }
+.brand-hub::after { right: 10%; bottom: 0; width: 160px; height: 1px; background: linear-gradient(90deg,transparent,rgba(255,255,255,.35)); }
+.brand-hub-header { position: relative; z-index: 1; min-height: 84px; }
+.brand-hub-header::before, .brand-hub-header::after { content: ""; position: absolute; top: 50%; width: calc(50% - 88px); height: 1px; background: linear-gradient(90deg,transparent,rgba(255,255,255,.1)); }
+.brand-hub-header::before { left: 0; } .brand-hub-header::after { right: 0; transform: rotate(180deg); }
+.hub-logo { position: relative; z-index: 1; filter: grayscale(1) contrast(1.35) brightness(1.2); }
+.brand-grid { position: relative; z-index: 1; gap: 12px; }
+.brand-card { min-height: 172px; background-color: #121212; border-color: rgba(255,255,255,.2); border-radius: 9px; box-shadow: inset 0 1px 0 rgba(255,255,255,.035),0 12px 26px rgba(0,0,0,.18); isolation: isolate; transition: transform .3s ease,border-color .3s ease,box-shadow .3s ease,background-color .3s ease; }
+.brand-card::before, .brand-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; transition: opacity .3s ease,transform .55s ease; }
+.brand-card::before { z-index: -2; opacity: .54; background-position: center; background-size: cover; mix-blend-mode: screen; }
+.brand-card::after { z-index: -1; opacity: .82; background: radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(255,255,255,.1),transparent 34%),linear-gradient(90deg,rgba(7,7,7,.98) 0%,rgba(7,7,7,.84) 42%,rgba(7,7,7,.34) 100%); }
+.brand-card:hover { background-color: #171717; border-color: rgba(255,255,255,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.11),0 16px 34px rgba(0,0,0,.32); transform: translateY(-2px); }
+.brand-card:hover::before { opacity: .9; transform: scale(1.035); } .brand-card:hover::after { opacity: .64; } .brand-card > * { position: relative; z-index: 1; }
+.brand-card-orange::before { background-image: radial-gradient(ellipse at 68% 55%,transparent 0 28%,rgba(255,255,255,.28) 28.5% 29%,transparent 29.6%),radial-gradient(ellipse at 72% 42%,transparent 0 23%,rgba(255,255,255,.18) 23.5% 24%,transparent 24.6%),linear-gradient(145deg,transparent 45%,rgba(255,255,255,.18) 45.5%,transparent 46%); transform: rotate(-8deg) scale(1.35); }
+.brand-card-dark::before { background-image: repeating-radial-gradient(ellipse at 83% 105%,transparent 0 18px,rgba(255,255,255,.12) 19px 20px,transparent 21px 28px),radial-gradient(ellipse at 86% 120%,rgba(255,255,255,.18),transparent 45%); transform: rotate(-10deg) scale(1.2); }
+.brand-card-lilac::before { background-image: radial-gradient(ellipse at 68% 104%,transparent 0 29%,rgba(255,255,255,.2) 29.5% 30%,transparent 30.6%),radial-gradient(ellipse at 77% 104%,transparent 0 27%,rgba(255,255,255,.14) 27.5% 28%,transparent 28.6%),linear-gradient(112deg,transparent 52%,rgba(255,255,255,.24) 52.5%,transparent 53%); }
+.brand-card-lime::before { background-image: linear-gradient(135deg,transparent 43%,rgba(255,255,255,.11) 43.2% 43.8%,transparent 44.1%),linear-gradient(90deg,transparent 65%,rgba(255,255,255,.16) 65.2% 65.8%,transparent 66%),radial-gradient(ellipse at 86% 60%,rgba(255,255,255,.16),transparent 36%); }
+.brand-card-blue::before { background-image: linear-gradient(102deg,transparent 38%,rgba(255,255,255,.18) 38.4% 39%,transparent 39.4%),linear-gradient(78deg,transparent 54%,rgba(255,255,255,.14) 54.4% 55%,transparent 55.4%),radial-gradient(ellipse at 83% 28%,rgba(255,255,255,.18),transparent 28%); transform: rotate(-8deg) scale(1.24); }
+.brand-card .card-symbol, .brand-card h3, .brand-card .card-arrow { text-shadow: 0 1px 16px rgba(255,255,255,.12); }
+.brand-card h3 { font-weight: 500; } .card-label { display: none; }
+@media (max-width: 850px) { .brand-hub { padding: 22px 20px 22px; } .brand-hub-header::before, .brand-hub-header::after { width: calc(50% - 72px); } .brand-card { min-height: 160px; } }
+@media (max-width: 560px) { body::before { opacity: .2; background-size: 118px 118px,118px 118px,42px 42px,42px 42px; } body::after { opacity: .26; } .brands { padding-top: 25px; } .brands::before { top: 10px; right: -36vw; width: 90vw; height: 42vw; } .brand-hub { padding: 16px; border-radius: 11px; } .brand-hub-header { min-height: 72px; } .brand-hub-header::before, .brand-hub-header::after { width: calc(50% - 54px); } .brand-grid { gap: 8px; } .brand-card { min-height: 148px; border-radius: 8px; } .brand-card::before { opacity: .34; } .brand-card::after { opacity: .9; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Preserve the card arrow overlay above the texture layer. */
+.brand-card .card-arrow { position: absolute; z-index: 2; }
